@@ -1,0 +1,24 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "CommonJS",
+        "lib": ["ES6", "ESNext", "ESNext.BigInt"],
+        "rootDir": "./source",
+        "outDir": "./dist",
+        "removeComments": true,
+        "strict": true,
+        "typeRoots": ["./source/@types/*.d", "./node_modules/@types"],
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strictPropertyInitialization": false,
+        "baseUrl": "./source"
+    },
+    "include": ["./source/**/*"],
+    "exclude": ["build", "node_modules", "package-lock.json", "package.json"]
+}

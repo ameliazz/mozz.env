@@ -1,0 +1,6 @@
+# paths
+node_modules/
+dist/
+
+# files
+yarn.lock

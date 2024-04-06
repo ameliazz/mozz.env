@@ -1,0 +1,24 @@
+{
+    "name": "mozz.js",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "description": "Your JavaScript Environment Enhancer",
+    "license": "LGPL-3.0-only",
+    "author": "Amélia Ribeiro <contato@ameliazz.xyz> (https://ameliazz.xyz/)",
+    "keywords": [
+        "environment",
+        "enhancer"
+    ],
+    "repository": "https://github.com/Canary2000/mozz.js.git",
+    "scripts": {
+        "build": "tsc -d --declarationDir dist"
+    },
+    "dependencies": {
+        "colors": "^1.4.0",
+        "dotenv": "^16.4.5"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.27",
+        "typescript": "^5.4.2"
+    }
+}

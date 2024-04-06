@@ -1,0 +1,31 @@
+name: (🚀) => Publish
+
+on:
+    push:
+        branches: ['master']
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: (🔺) Checkout
+              uses: actions/checkout@v4
+
+            - name: (🔺) Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '20.x'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: (🔺) Installing Dependencies...
+              run: yarn install
+
+            - name: (🔺) Building...
+              run: |
+                  yarn build
+
+            - name: (🔺) Publishing
+              run: yarn publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

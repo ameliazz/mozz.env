@@ -1,0 +1,9 @@
+.github/
+node_modules/
+source/
+
+.gitattributes
+.gitignore
+.prettierrc
+tsconfig.json
+yarn.lock
