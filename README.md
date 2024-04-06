@@ -1,4 +1,4 @@
-<h1 align='center'>(🔺) Mozz.js</h1>
+<h1 align='center'>(🔺) Mozz.Env</h1>
 <p align='center'>Mozz is your Environment Enhancer</p>
 
 ## How to use
@@ -19,22 +19,7 @@ Let's set up two environments, one for development and one for production using 
 }
 ```
 
-> In the Mozz profile you can set `@file` for every environment to change your `.env` file, for example:
-
-```json
-{
-    "production": {
-        "@file": ".env",
-        "hostname": "0.0.0.0"
-    },
-    "development": {
-        "@file": ".env.local",
-        "hostname": "localhost"
-    }
-}
-```
-
-And we will also configure the `MOZZ_ENV` environment variable:
+We will also configure the variable `MOZZ_ENV` in `.env` so the library knows which environment we are wanting:
 
 ```env
 MOZZ_ENV="development"
@@ -43,7 +28,7 @@ MOZZ_ENV="development"
 Now, we can move on to the code, just import `Mozz` and create a instance to access your environment settings
 
 ```js
-const Mozz = require('mozz.js')
+const Mozz = require('mozz.env')
 const Enhancer = new Mozz()
 
 Enhancer.env.hostname // localhost
