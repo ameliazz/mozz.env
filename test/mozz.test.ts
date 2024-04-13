@@ -21,3 +21,8 @@ test(() => {
         'Switch Mozz environment and get one variable'
     )
 })
+
+describe('Testing Mozz error handle')
+assert.throws(() => {
+    Enhancer.switch('yaml_test')
+}, 'Switch to a non-existent environment (Expects error)')
