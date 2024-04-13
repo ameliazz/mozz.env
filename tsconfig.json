@@ -19,6 +19,12 @@
         "strictPropertyInitialization": false,
         "baseUrl": "./source"
     },
-    "include": ["./source/**/*"],
-    "exclude": ["build", "node_modules", "package-lock.json", "package.json"]
+    "include": ["./source/**/*", "test"],
+    "exclude": [
+        "build",
+        "test",
+        "node_modules",
+        "package-lock.json",
+        "package.json"
+    ]
 }
