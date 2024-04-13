@@ -1,15 +1,20 @@
 import { existsSync, readFileSync } from 'fs'
-import DotEnv from 'dotenv'
-
 import TOML from 'toml'
+
 import defaults from '../defaults'
+import DotEnv from 'dotenv'
 DotEnv.config()
 
 if (!process.env['MOZZ_ENV']) {
     throw new Error(`Mozz environment is not defined`)
 }
 
-type MozzProfileObjectTypes = {
+type MozzProfileSettingsType = {
+    allowEnvSwitch: boolean
+}
+
+interface MozzProfileObjectType {
+    settings: MozzProfileSettingsType
     environments: {
         [Env: string]: {
             [property: string]: number | boolean | string
@@ -21,6 +26,7 @@ export default class Env {
     [key: string]: unknown
     NAME = String(process.env['MOZZ_ENV'])
     MOZZ_VERSION = defaults.version
+    MOZZ_SETTINGS: MozzProfileSettingsType
 
     config(environment?: string) {
         if (
@@ -37,7 +43,7 @@ export default class Env {
             )
         }
 
-        const RawMozzObject: MozzProfileObjectTypes = JSON.parse(
+        const RawMozzObject: MozzProfileObjectType = JSON.parse(
             readFileSync(
                 `${process.cwd()}/${defaults.applicationConfigFilename}`,
                 {
@@ -47,10 +53,15 @@ export default class Env {
         )
 
         this.NAME = String(environment || process.env['MOZZ_ENV'])
+        this.MOZZ_SETTINGS = Object.assign(
+            RawMozzObject.settings,
+            defaults.settings
+        )
+
         const MozzConfig =
             RawMozzObject.environments[
                 (environment ||
-                    process.env['MOZZ_ENV']) as keyof MozzProfileObjectTypes
+                    process.env['MOZZ_ENV']) as keyof MozzProfileObjectType
             ]
 
         if (Object(MozzConfig).length >= 1 || !MozzConfig) {
