@@ -8,4 +8,8 @@ export default class Mozz {
     constructor() {
         this.env.config()
     }
+
+    switch(environment: string) {
+        return this.env.config(environment)
+    }
 }

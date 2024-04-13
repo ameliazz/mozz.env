@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'fs'
 import DotEnv from 'dotenv'
 
+import TOML from 'toml'
 import defaults from '../defaults'
 DotEnv.config()
 
@@ -18,10 +19,10 @@ type MozzProfileObjectTypes = {
 
 export default class Env {
     [key: string]: unknown
-    ENV_NAME = String(process.env['MOZZ_ENV'])
+    NAME = String(process.env['MOZZ_ENV'])
     MOZZ_VERSION = defaults.version
 
-    config() {
+    config(environment?: string) {
         if (
             !existsSync(
                 `${process.cwd()}/${defaults.applicationConfigFilename}`
@@ -45,9 +46,11 @@ export default class Env {
             )
         )
 
+        this.NAME = String(environment || process.env['MOZZ_ENV'])
         const MozzConfig =
             RawMozzObject.environments[
-                process.env['MOZZ_ENV'] as keyof MozzProfileObjectTypes
+                (environment ||
+                    process.env['MOZZ_ENV']) as keyof MozzProfileObjectTypes
             ]
 
         if (Object(MozzConfig).length >= 1 || !MozzConfig) {
@@ -58,16 +61,56 @@ export default class Env {
             )
         }
 
-        if (MozzConfig['@file']) {
+        process.env['MOZZ_VERSION'] = this.MOZZ_VERSION
+        if (
+            MozzConfig['@mozz:dotenv'] &&
+            typeof MozzConfig['@mozz:dotenv'] == 'string'
+        ) {
             DotEnv.config({
-                path: `${process.cwd()}/${MozzConfig['@file']}`,
+                path: `${process.cwd()}/${MozzConfig['@mozz:dotenv']}`,
                 override: true,
             })
         }
 
-        process.env['MOZZ_VERSION'] = this.MOZZ_VERSION
-        for (const item in MozzConfig) {
-            this[item] = MozzConfig[item]
+        if (
+            MozzConfig['@mozz:config_file'] &&
+            typeof MozzConfig['@mozz:config_file'] == 'string'
+        ) {
+            const splittedFilename = String(
+                MozzConfig['@mozz:config_file']
+            ).split('.')
+            const fileType = splittedFilename[splittedFilename.length - 1]
+            const fileContent = readFileSync(
+                `${process.cwd()}/${MozzConfig['@mozz:config_file']}`,
+                'utf-8'
+            )
+
+            switch (fileType.toLowerCase()) {
+                case 'json':
+                    const ConfigObjectJSONParsed = JSON.parse(fileContent)
+                    for (const item in ConfigObjectJSONParsed) {
+                        this[item] = ConfigObjectJSONParsed[item]
+                    }
+
+                    break
+
+                case 'toml':
+                    const ConfigObjectTOMLParsed = TOML.parse(fileContent)
+                    for (const item in ConfigObjectTOMLParsed) {
+                        this[item] = ConfigObjectTOMLParsed[item]
+                    }
+
+                    break
+
+                default:
+                    for (const item in MozzConfig) {
+                        this[item] = MozzConfig[item]
+                    }
+            }
+        } else {
+            for (const item in MozzConfig) {
+                this[item] = MozzConfig[item]
+            }
         }
 
         return true
