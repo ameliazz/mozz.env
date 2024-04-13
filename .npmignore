@@ -1,9 +1,13 @@
 .github/
 node_modules/
 source/
+test/
 
 .gitattributes
 .gitignore
 .prettierrc
 tsconfig.json
 yarn.lock
+
+.env
+mozz.profile.json

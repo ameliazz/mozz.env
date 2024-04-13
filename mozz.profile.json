@@ -1,0 +1,10 @@
+{
+    "environments": {
+        "toml_test": {
+            "@mozz:config_file": "/test/testFile.toml"
+        },
+        "json_test": {
+            "@mozz:config_file": "/test/testFile.json"
+        }
+    }
+}

@@ -11,14 +11,18 @@
     ],
     "repository": "https://github.com/Canary2000/mozz.js.git",
     "scripts": {
-        "build": "tsc -d --declarationDir dist"
+        "build": "tsc -d --declarationDir dist",
+        "test": "poku"
     },
     "dependencies": {
         "colors": "^1.4.0",
-        "dotenv": "^16.4.5"
+        "dotenv": "^16.4.5",
+        "toml": "^3.0.0"
     },
     "devDependencies": {
         "@types/node": "^20.11.27",
+        "poku": "^1.9.3",
+        "tsx": "^4.7.2",
         "typescript": "^5.4.2"
     }
 }
