@@ -54,7 +54,7 @@ export default class Env {
 
         this.NAME = String(environment || process.env['MOZZ_ENV'])
         this.MOZZ_SETTINGS = Object.assign(
-            RawMozzObject.settings,
+            Object(RawMozzObject.settings),
             defaults.settings
         )
 
