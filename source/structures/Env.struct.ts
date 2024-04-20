@@ -4,6 +4,7 @@ import TOML from 'toml'
 import defaults from '../defaults'
 import DotEnv from 'dotenv'
 import ParseEnvValue from 'utils/Parse.util'
+
 DotEnv.config()
 
 if (!process.env['MOZZ_ENV']) {
@@ -119,7 +120,7 @@ export default class Env {
             }
         } else {
             for (const item in MozzConfig) {
-                this[item] = MozzConfig[item]
+                this[item] = ParseEnvValue(MozzConfig[item])
             }
         }
 
