@@ -1,13 +1,15 @@
 {
     "name": "mozz.env",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "main": "dist/main.js",
     "description": "Your JavaScript Environment Enhancer",
     "license": "LGPL-3.0-only",
     "author": "Amélia Ribeiro <contato@ameliazz.xyz> (https://ameliazz.xyz/)",
     "keywords": [
-        "environment",
-        "enhancer"
+        "mozz",
+        "enhancer",
+        "env",
+        "environment"
     ],
     "repository": "https://github.com/Canary2000/mozz.js.git",
     "scripts": {
