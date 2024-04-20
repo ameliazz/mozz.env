@@ -5,5 +5,6 @@ export default {
     version: Package.version,
     settings: {
         allowEnvSwitch: true,
+        allowUndefinedValues: true,
     },
 }
