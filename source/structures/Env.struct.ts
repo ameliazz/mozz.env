@@ -3,6 +3,7 @@ import TOML from 'toml'
 
 import defaults from '../defaults'
 import DotEnv from 'dotenv'
+import ParseEnvValue from 'utils/Parse.util'
 DotEnv.config()
 
 if (!process.env['MOZZ_ENV']) {
@@ -96,27 +97,25 @@ export default class Env {
                 'utf-8'
             )
 
+            let ParsedConfigFileData: Object = {}
+
             switch (fileType.toLowerCase()) {
                 case 'json':
-                    const ConfigObjectJSONParsed = JSON.parse(fileContent)
-                    for (const item in ConfigObjectJSONParsed) {
-                        this[item] = ConfigObjectJSONParsed[item]
-                    }
-
+                    ParsedConfigFileData = JSON.parse(fileContent)
                     break
 
                 case 'toml':
-                    const ConfigObjectTOMLParsed = TOML.parse(fileContent)
-                    for (const item in ConfigObjectTOMLParsed) {
-                        this[item] = ConfigObjectTOMLParsed[item]
-                    }
-
+                    ParsedConfigFileData = TOML.parse(fileContent)
                     break
 
                 default:
-                    for (const item in MozzConfig) {
-                        this[item] = MozzConfig[item]
-                    }
+                    ParsedConfigFileData = MozzConfig
+            }
+
+            for (const item in ParsedConfigFileData) {
+                this[item] = ParseEnvValue(
+                    ParsedConfigFileData[item as keyof object]
+                )
             }
         } else {
             for (const item in MozzConfig) {
