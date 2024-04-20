@@ -12,7 +12,8 @@ if (!process.env['MOZZ_ENV']) {
 }
 
 type MozzProfileSettingsType = {
-    allowEnvSwitch: boolean
+    allowEnvSwitch?: boolean
+    allowUndefinedValues?: boolean
 }
 
 interface MozzProfileObjectType {
@@ -114,13 +115,43 @@ export default class Env {
             }
 
             for (const item in ParsedConfigFileData) {
-                this[item] = ParseEnvValue(
+                const value = ParseEnvValue(
                     ParsedConfigFileData[item as keyof object]
                 )
+
+                if (
+                    typeof value == 'undefined' &&
+                    !this.MOZZ_SETTINGS.allowUndefinedValues
+                ) {
+                    throw new Error(
+                        `${
+                            `"${item}"`.cyan
+                        } has been assigned an undefined value. Try enabling the ${
+                            '"allowUndefinedValues"'.green
+                        } option.`
+                    )
+                }
+
+                this[item] = value
             }
         } else {
             for (const item in MozzConfig) {
-                this[item] = ParseEnvValue(MozzConfig[item])
+                const value = ParseEnvValue(MozzConfig[item])
+
+                if (
+                    typeof value == 'undefined' &&
+                    !this.MOZZ_SETTINGS.allowUndefinedValues
+                ) {
+                    throw new Error(
+                        `${
+                            `"${item}"`.cyan
+                        } has been assigned an undefined value. Try enabling the ${
+                            '"allowUndefinedValues"'.green
+                        } option.`
+                    )
+                }
+                
+                this[item] = value
             }
         }
 
