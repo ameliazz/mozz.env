@@ -1,12 +1,10 @@
 name: (🚀) => Publish
 
 on:
-    push:
-        branches: ['master']
     workflow_dispatch:
 
 jobs:
-    build:
+    publish:
         runs-on: ubuntu-latest
         steps:
             - name: (🔺) Checkout
@@ -25,7 +23,14 @@ jobs:
               run: |
                   yarn build
 
-            - name: (🔺) Publishing
+            - name: (🔺) Publishing... (NPM)
               run: yarn publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            - name: (🔺) Publishing... (GPR)
+              run: |
+                  yarn config set registry https://npm.pkg.github.com
+                  yarn publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GPR_TOKEN }}
