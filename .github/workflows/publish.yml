@@ -19,6 +19,9 @@ jobs:
             - name: (🔺) Installing Dependencies...
               run: yarn install
 
+            - name: (🔺) Testing...
+              run: yarn test
+
             - name: (🔺) Building...
               run: |
                   yarn build
