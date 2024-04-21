@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'fs'
 import TOML from 'toml'
+import YAML from 'yaml'
 
 import defaults from '../defaults'
 import DotEnv from 'dotenv'
@@ -110,6 +111,10 @@ export default class Env {
                     ParsedConfigFileData = TOML.parse(fileContent)
                     break
 
+                case 'yaml':
+                    ParsedConfigFileData = YAML.parse(fileContent)
+                    break
+
                 default:
                     ParsedConfigFileData = MozzConfig
             }
@@ -150,7 +155,7 @@ export default class Env {
                         } option.`
                     )
                 }
-                
+
                 this[item] = value
             }
         }
