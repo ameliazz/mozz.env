@@ -18,11 +18,25 @@ test(() => {
     assert.equal(
         Enhancer.env.anotherAwesomeEnvVariable,
         2024,
-        'Switch Mozz environment and get one variable'
+        'Switch Mozz environment to ' +
+            'json_test'.yellow +
+            ' and get one variable'.green
+    )
+})
+
+test(() => {
+    Enhancer.switch('yaml_test')
+
+    assert.equal(
+        Enhancer.env.awesomeTestVariable,
+        8080,
+        'Switch Mozz environment to ' +
+            'yaml_test'.magenta +
+            ' and get one variable'.green
     )
 })
 
 describe('Testing Mozz error handle')
 assert.throws(() => {
-    Enhancer.switch('yaml_test')
+    Enhancer.switch('nonexistent_environment')
 }, 'Switch to a non-existent environment (Expects error)')
