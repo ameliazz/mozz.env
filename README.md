@@ -1,35 +1,22 @@
-<h1 align='center'>(🔺) Mozz.Env</h1>
-<p align='center'>Mozz is your Environment Enhancer</p>
+<h1 align='center'>🍃 Mozz.Env</h1>
+<p align='center'><i><strong>Your environment enhancer, based on community ideas.</strong></i></p>
 
-## How to use
+## `✨` ] What is Mozz?
 
-We need to configure the environment for Mozz work, first, let's create the `mozz.profile.json` file in the root of the project.
-Let's set up two environments, one for development and one for production using the following code:
+Mozz is a library that aims to facilitate the management of configurations based on the environment used. For example, you can set options for a development environment and different options for a production environment. The library arose from the need to manage multiple `.env`, `JSON` and `TOML` configuration files.
 
-```json
-{
-    "environments": {
-        "production": {
-            "hostname": "0.0.0.0"
-        },
-        "development": {
-            "hostname": "localhost"
-        }
-    }
-}
-```
+## `🚀` ] Features
 
-We will also configure the variable `MOZZ_ENV` in `.env` so the library knows which environment we are wanting:
+-   _Supports `Json` and `Toml` files_;
+-   _Supports environment `switch` at runtime_;
+-   _Supports different env and configuration file to each environment._
 
-```env
-MOZZ_ENV="development"
-```
+## `📦` ] Links
 
-Now, we can move on to the code, just import `Mozz` and create a instance to access your environment settings
+-   _Docs_: [Wiki](https://github.com/Canary2000/mozz.env/wiki)
+-   _Creator_: [Amélia.Zz](https://github.com/Canary2000)
+-   _Library_:
+-   -   [npm](https://npmjs.com/package/mozz.env)
 
-```js
-const Mozz = require('mozz.env')
-const Enhancer = new Mozz()
-
-Enhancer.env.hostname // localhost
-```
+<hr />
+<h4 align='center'>Made with 💜 for you, by <a href='https://github.com/Canary2000'>Amélia</a>.</h4>
