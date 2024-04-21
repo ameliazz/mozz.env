@@ -1,10 +1,11 @@
 import { existsSync, readFileSync } from 'fs'
+import DotEnv from 'dotenv'
+
 import TOML from 'toml'
 import YAML from 'yaml'
 
 import defaults from '../defaults'
-import DotEnv from 'dotenv'
-import ParseEnvValue from 'utils/Parse.util'
+import ParseEnvValue from '../utils/Parse.util'
 
 DotEnv.config()
 
