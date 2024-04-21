@@ -24,13 +24,7 @@ jobs:
                   yarn build
 
             - name: (🔺) Publishing... (NPM)
-              run: yarn publish
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-            - name: (🔺) Publishing... (GPR)
               run: |
-                  yarn config set registry https://npm.pkg.github.com
                   yarn publish
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GPR_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
