@@ -13,10 +13,10 @@ Mozz is a library that aims to facilitate the management of configurations based
 
 ## `📦` ] Links
 
--   _Docs_: [Wiki](https://github.com/Canary2000/mozz.env/wiki)
--   _Creator_: [Amélia.Zz](https://github.com/Canary2000)
+-   _Docs_: [Wiki](https://github.com/ameliazz/mozz.env/wiki)
+-   _Creator_: [Amélia.Zz](https://github.com/ameliazz)
 -   _Library_:
 -   -   [npm](https://npmjs.com/package/mozz.env)
 
 <hr />
-<h4 align='center'>Made with 💜 for you, by <a href='https://github.com/Canary2000'>Amélia</a>.</h4>
+<h4 align='center'>Made with 💜 for you, by <a href='https://github.com/ameliazz'>Amélia</a>.</h4>
