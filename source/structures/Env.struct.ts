@@ -116,51 +116,42 @@ export default class Env {
                     ParsedConfigFileData = YAML.parse(fileContent)
                     break
 
+                case 'yml':
+                    ParsedConfigFileData = YAML.parse(fileContent)
+                    break
+
                 default:
                     ParsedConfigFileData = MozzConfig
             }
 
-            for (const item in ParsedConfigFileData) {
-                const value = ParseEnvValue(
-                    ParsedConfigFileData[item as keyof object]
-                )
-
-                if (
-                    typeof value == 'undefined' &&
-                    !this.MOZZ_SETTINGS.allowUndefinedValues
-                ) {
-                    throw new Error(
-                        `${
-                            `"${item}"`.cyan
-                        } has been assigned an undefined value. Try enabling the ${
-                            '"allowUndefinedValues"'.green
-                        } option.`
-                    )
-                }
-
-                this[item] = value
-            }
+            this.#iterate(ParsedConfigFileData)
         } else {
-            for (const item in MozzConfig) {
-                const value = ParseEnvValue(MozzConfig[item])
-
-                if (
-                    typeof value == 'undefined' &&
-                    !this.MOZZ_SETTINGS.allowUndefinedValues
-                ) {
-                    throw new Error(
-                        `${
-                            `"${item}"`.cyan
-                        } has been assigned an undefined value. Try enabling the ${
-                            '"allowUndefinedValues"'.green
-                        } option.`
-                    )
-                }
-
-                this[item] = value
-            }
+            this.#iterate(MozzConfig)
         }
 
         return true
+    }
+
+    #iterate<T = object>(input: T) {
+        const response = {}
+
+        for (const item in input) {
+            const value = ParseEnvValue(input[item as keyof object])
+
+            if (
+                typeof value == 'undefined' &&
+                !this.MOZZ_SETTINGS.allowUndefinedValues
+            ) {
+                throw new Error(
+                    `${
+                        `"${item}"`.cyan
+                    } has been assigned an undefined value. Try enabling the ${
+                        '"allowUndefinedValues"'.green
+                    } option.`
+                )
+            }
+
+            this[String(item)] = value
+        }
     }
 }
