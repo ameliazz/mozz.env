@@ -1,6 +1,6 @@
 {
     "name": "mozz.env",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "main": "dist/main.js",
     "description": "Your JavaScript Environment Enhancer",
     "license": "LGPL-3.0-only",
@@ -11,7 +11,7 @@
         "env",
         "environment"
     ],
-    "repository": "https://github.com/Canary2000/mozz.env.git",
+    "repository": "https://github.com/ameliazz/mozz.env.git",
     "scripts": {
         "build": "tsc -d --declarationDir dist",
         "test": "poku"
