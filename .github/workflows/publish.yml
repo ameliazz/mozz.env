@@ -20,13 +20,13 @@ jobs:
               run: pnpm install .
 
             - name: (🔺) Testing...
-              run: pnpm run test
+              run: pnpm test
 
             - name: (🔺) Building...
               run: |
-                  pnpm run build
+                  pnpm build
 
-            - name: (🔺) Publishing...
+            - name: (🔺) Publishing... (to NPM)
               run: |
                   pnpm publish
               env:
