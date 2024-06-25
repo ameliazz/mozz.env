@@ -14,9 +14,6 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
-      mozz.env:
-        specifier: 'link:'
-        version: 'link:'
       toml:
         specifier: ^3.0.0
         version: 3.0.0
@@ -27,6 +24,9 @@ importers:
       '@types/node':
         specifier: ^20.11.27
         version: 20.14.8
+      mozz.env:
+        specifier: 'link:'
+        version: 'link:'
       poku:
         specifier: ^1.9.3
         version: 1.20.0
