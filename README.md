@@ -8,8 +8,8 @@ Mozz is a library that aims to facilitate the management of configurations based
 ## `🚀` ] Features
 
 -   _Supports `Json`, `Toml` and `Yaml` files_;
--   _Supports environment `switch` at runtime_;
--   _Supports different env and configuration file to each environment._
+-   _Supports different env and configuration file to each environment;_
+-   _Supports to types in Environment Variables_.
 
 ## `📦` ] Links
 
