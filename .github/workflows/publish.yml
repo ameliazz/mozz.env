@@ -1,4 +1,4 @@
-name: (🚀) => Publish
+name: (🚀) Publish
 
 on:
     workflow_dispatch:
@@ -17,17 +17,17 @@ jobs:
                   registry-url: 'https://registry.npmjs.org'
 
             - name: (🔺) Installing Dependencies...
-              run: yarn install
+              run: pnpm install .
 
             - name: (🔺) Testing...
-              run: yarn test
+              run: pnpm test
 
             - name: (🔺) Building...
               run: |
-                  yarn build
+                  pnpm build
 
-            - name: (🔺) Publishing... (NPM)
+            - name: (🔺) Publishing... (to NPM)
               run: |
-                  yarn publish
+                  pnpm publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -3,11 +3,10 @@ node_modules/
 source/
 test/
 
-.gitattributes
 .gitignore
 .prettierrc
 tsconfig.json
-yarn.lock
+pnpm-lock.yaml
 
 .env
 mozz.profile.json

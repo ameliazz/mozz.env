@@ -1,6 +1,6 @@
 {
     "name": "mozz.env",
-    "version": "2.2.2",
+    "version": "2.3.0",
     "main": "dist/main.js",
     "description": "Your JavaScript Environment Enhancer",
     "license": "LGPL-3.0-only",
@@ -11,6 +11,9 @@
         "env",
         "environment"
     ],
+    "bin": {
+        "mzz": "./bin/index.js"
+    },
     "repository": "https://github.com/ameliazz/mozz.env.git",
     "scripts": {
         "build": "tsc -d --declarationDir dist",
@@ -24,6 +27,7 @@
     },
     "devDependencies": {
         "@types/node": "^20.11.27",
+        "mozz.env": "link:",
         "poku": "^1.9.3",
         "tsx": "^4.7.2",
         "typescript": "^5.4.2"
