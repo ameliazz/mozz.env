@@ -15,10 +15,10 @@ const generateDataTypes = async (obj) => {
 
         if (type == 'object') {
             response.push(
-                `${dataSet[0]}:{${await generateDataTypes(dataSet[1])}}`
+                `"${dataSet[0]}":{${await generateDataTypes(dataSet[1])}}`
             )
         } else {
-            response.push(`${dataSet[0]}:${type}`)
+            response.push(`"${dataSet[0]}":${type}`)
         }
     }
 
